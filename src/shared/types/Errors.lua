@@ -8,7 +8,9 @@ local Errors = {
     NOPERMISSION = 5,
     DOESNTEXIST = 6,
     NOCHAR = 7,
-    CMDTOOBIG = 8
+    CMDTOOBIG = 8,
+    CMDNONAME = 9,
+    CMDINVALID = 10
 }
 
 return Errors

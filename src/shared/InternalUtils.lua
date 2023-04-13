@@ -1,6 +1,6 @@
 local Utils = {}
 local PermissionGroups = require(script.Parent.PermissionGroups)
-local Errors = require(script.Parent.Errors)
+local Errors = require(script.Parent.types.Errors)
 
 function Utils.GetPermissionGroupFromUserId(UserId: number)
     for i, v in ipairs(PermissionGroups) do
@@ -9,7 +9,7 @@ function Utils.GetPermissionGroupFromUserId(UserId: number)
         end
     end
 
-    return nil
+    return PermissionGroups.GenericPlayer
 end
 
 function Utils.GetCharacterFromName(Name: string)

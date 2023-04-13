@@ -1,5 +1,6 @@
 local Settings = {
     -- Important
+    
     Prefix = "/", -- Defines the Prefix of a command (ex. /kick)
     ArgumentSeparator = " ", -- Defines the character used to separate arguments in a command (ex. Sep = ".", /kick.Hello.World)
     HasAccessToStore = false, -- If the module has access to the DataStoreService service in roblox

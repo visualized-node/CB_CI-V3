@@ -1,12 +1,13 @@
 local Commands = {}
-local PermissionGroups, PermissionGroup = require(script.PermissionGroups)
+local PermissionGroups = require(script.PermissionGroups)
+local CommandParser = require(script.CommandParser)
 
-function Commands.GetParser()
-    return require(script.CommandParser)
+function Commands.FastParse(Player: Player, Message: string)
+    CommandParser.Parse(Player, Message)
 end
 
-function Commands.RegisterPermissionGroup(name: string, holders: {number}?, permissions: {number}, groupidentifier: number? | string?)
-    PermissionGroup.new(name, holders, permissions, groupidentifier)
+function Commands.GetParser()
+    return CommandParser
 end
 
 function Commands.GetPermissionGroups()

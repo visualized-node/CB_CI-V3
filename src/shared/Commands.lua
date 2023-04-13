@@ -1,5 +1,5 @@
 local Permission = require(script.Parent.Permission)
-local Errors = require(script.Parent.Errors)
+local Errors = require(script.Parent.types.Errors)
 local Settings = require(script.Parent.Settings)
 
 local Commands = {
