@@ -7,7 +7,7 @@ local PermissionGroups = {
     Admin = PermissionGroup.new("Admin", nil, {Permission.RUNS_ADMIN_COMMANDS, Permission.RUNS_FUN_COMMANDS, Permission.RUNS_NORMAL_COMMANDS }),
     Moderator = PermissionGroup.new("Moderator", nil, {Permission.RUNS_RESTRICTED_ADMIN_COMMANDS, Permission.RUNS_FUN_COMMANDS, Permission.RUNS_NORMAL_COMMANDS }),
     Vip = PermissionGroup.new("VIP", nil, { Permission.RUNS_FUN_COMMANDS, Permission.RUNS_NORMAL_COMMANDS }),
-    GenericPlayer = PermissionGroup.new("Generic", nil, { Permission.RUNS_NORMAL_COMMANDS })
+    GenericPlayer = PermissionGroup.new("Generic", nil, { Permission.RUNS_FUN_COMMANDS })
 }
 
 return PermissionGroups

@@ -28,12 +28,35 @@ function Utils.GetPermissionGroupFromUserId(UserId: number)
     return PermissionGroups.GenericPlayer
 end
 
+function Utils.GetPlayerFromString(String: string)
+    -- best case: there's a player named exactly that, worst case: few letters in display name
+
+    if game.Players[String] then
+        -- :O
+
+        return game.Players[String]
+    end
+
+    for i, v in ipairs(game.Players:GetPlayers()) do
+        local ln = v.Name:lower()
+        local dln = v.DisplayName:lower()
+
+        if ln:find(String:lower()) or dln:find(String:lower()) then
+            return v
+        end
+    end
+
+    return nil
+end
+
 function Utils.HasPermission(Sender: Player, Command): boolean
-    if not table.find(Utils.GetPermissionGroupFromUserId(Sender.UserId).Permissions, Command[2]) then
+    local PermGroup = Utils.GetPermissionGroupFromUserId(Sender.UserId)
+
+    if not table.find(PermGroup.Permissions, Command[2]) then
         return false
     end
 
-    if Settings.PlayerCanRunCommands and Utils.GetPermissionGroupFromUserId(Sender.UserId).Name == "Generic" and Command[2] ~= Permission.RUNS_NORMAL_COMMANDS then
+    if Settings.PlayerCanRunCommands and PermGroup.Name == "Generic" and not table.find(PermGroup.Permissions, Command[2]) then
         return false
     end
 

@@ -14,6 +14,8 @@ function CommandParser.Parse(Sender: Player, Message: string)
 
     local Command = Commands[Args[1]:lower()] or nil
 
+    print(Utils.GetPermissionGroupFromUserId(Sender.UserId))
+
     if not Command then return Errors.DOESNTEXIST end
     if not Utils.HasPermission(Sender, Command) then return Errors.NOPERMISSION end
 
@@ -22,7 +24,7 @@ function CommandParser.Parse(Sender: Player, Message: string)
 
         print(string.format("CommandParser ~ Success running command '%s'", Command[1]))
 
-        coroutine.resume(coroutine.create(Command[3]))
+        coroutine.resume(coroutine.create(Command[3](Sender, Args)))
     end)
 
     return Errors.SUCCESS
