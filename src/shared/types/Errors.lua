@@ -10,7 +10,9 @@ local Errors = {
     NOCHAR = 7,
     CMDTOOBIG = 8,
     CMDNONAME = 9,
-    CMDINVALID = 10
+    CMDINVALID = 10,
+    CMDGOTERROR = 11,
+    NOTFNC = 12
 }
 
 return Errors

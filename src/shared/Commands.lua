@@ -1,27 +1,20 @@
+local CommandBuilder = require(script.Parent.builders.CommandBuilder)
 local Permission = require(script.Parent.Permission)
 local Errors = require(script.Parent.types.Errors)
 local Settings = require(script.Parent.Settings)
 
 local Commands = {
-	["ping"] = {
-		Permission.RUNS_NORMAL_COMMANDS,
-		function(Player: Player, Args: {string}) 
-			print("Pong!")
-
-			return Errors.SUCCESS
-		end
+	["test"] = {
+		"test",
+		Permission.RUNS_SERVERHANDLER_COMMANDS,
+		function() end
 	}
 }
 
-local CommandBuilder = {}
+CommandBuilder.new(Commands, "ping", Permission.RUNS_NORMAL_COMMANDS, function(Player: Player, Args: {string}) 
+	print("Pong!")
 
-function CommandBuilder.new(name: string, permission: number, callback: any)
-	-- it doesn't really matter what callback is since when running it's more secure than area 51
-	-- it automatically adds it to commands
+	return Errors.SUCCESS
+end)
 
-	if #name < Settings.MinimumCommandLength or #name > Settings.MaximumCommandLength then
-		return Errors.CMDTOOBIG
-	end
-end
-
-return {Commands, CommandBuilder}
+return Commands

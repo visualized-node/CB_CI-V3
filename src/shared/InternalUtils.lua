@@ -1,10 +1,11 @@
 local Utils = {}
+local Permission = require(script.Parent.Permission)
 local PermissionGroups = require(script.Parent.PermissionGroups)
 local Errors = require(script.Parent.types.Errors)
 local Settings = require(script.Parent.Settings)
 
 function Utils.GetPermissionGroupFromUserId(UserId: number)
-    local Player: Player = game.Players:GetPlayerFromUserId(UserId)
+    local Player: Player = game.Players:GetPlayerByUserId(UserId)
 
     for i, v in ipairs(PermissionGroups) do
         if table.find(v.Holders, UserId) then
@@ -25,6 +26,18 @@ function Utils.GetPermissionGroupFromUserId(UserId: number)
     end
 
     return PermissionGroups.GenericPlayer
+end
+
+function Utils.HasPermission(Sender: Player, Command): boolean
+    if not table.find(Utils.GetPermissionGroupFromUserId(Sender.UserId).Permissions, Command[2]) then
+        return false
+    end
+
+    if Settings.PlayerCanRunCommands and Utils.GetPermissionGroupFromUserId(Sender.UserId).Name == "Generic" and Command[2] ~= Permission.RUNS_NORMAL_COMMANDS then
+        return false
+    end
+
+    return true
 end
 
 function Utils.GetCharacterFromName(Name: string)

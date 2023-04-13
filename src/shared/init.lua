@@ -3,7 +3,7 @@ local PermissionGroups = require(script.PermissionGroups)
 local CommandParser = require(script.CommandParser)
 
 function Commands.FastParse(Player: Player, Message: string)
-    CommandParser.Parse(Player, Message)
+    print(CommandParser.Parse(Player, Message))
 end
 
 function Commands.GetParser()
