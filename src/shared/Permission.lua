@@ -1,0 +1,9 @@
+local Permissions = {
+    RUNS_SERVERHANDLER_COMMANDS = 5,
+    RUNS_RESTRICTED_ADMIN_COMMANDS = 4,
+    RUNS_ADMIN_COMMANDS = 3,
+    RUNS_FUN_COMMANDS = 2,
+    RUNS_NORMAL_COMMANDS = 1
+}
+
+return Permissions
