@@ -1,26 +1,26 @@
-local Permission = require(script.Parent.Parent.Permission)
-local Errors = require(script.Parent.Parent.types.Errors)
-local Settings = require(script.Parent.Parent.Settings)
-
 local CommandBuilder = {}
 
-function CommandBuilder.new(Commands: {}, name: string, permission: number, callback: any)
-	-- it doesn't really matter what callback is since when running it's more secure than area 51
-	-- it automatically adds it to commands
+CommandBuilder.__index = CommandBuilder
 
-	if #name < Settings.MinimumCommandLength or #name > Settings.MaximumCommandLength then
-		return Errors.CMDTOOBIG
-	end
+local CB_CI = script.Parent.Parent
 
-	if type(callback) ~= "function" then return Errors.NOTFNC end
+local Types = require(CB_CI.Types)
+local Logger, Thread, CEnum = require(CB_CI.internals.Logger), require(CB_CI.internals.Thread), require(CB_CI.interfaces.CommandEnums)
 
-	Commands[name] = {
-		name,
-		permission,
-		callback
-	}
+function CommandBuilder.new(CommandName: string | Types.TStrings, MinPermission: Types.GenericPermission, Callback: Types.CommandCallback)
+    local ThisCommand = {}
 
-	return Errors.SUCCESS
+    setmetatable(ThisCommand, CommandBuilder)
+
+    ThisCommand.CommandName = CommandName
+    ThisCommand.MinPermission = MinPermission
+    ThisCommand.Callback = Callback
+
+    return ThisCommand
+end
+
+function CommandBuilder:Run(Sender: Player, Args: Types.TStrings)
+    self.Callback(Sender, Args)
 end
 
 return CommandBuilder

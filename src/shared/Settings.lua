@@ -1,25 +1,12 @@
 local Settings = {
-    -- Important
+    -- Command-Related
 
-    Prefix = "/", -- Defines the Prefix of a command (ex. /kick)
-    ArgumentSeparator = " ", -- Defines the character used to separate arguments in a command (ex. Sep = ".", /kick.Hello.World)
-    HasAccessToStore = false, -- If the module has access to the DataStoreService service in roblox
-    FollowPermissionGroups = true, -- Uses the Permission Groups such as Member, Admin, Owner
+    Prefix = "/", -- Prefix of a Command. (Example: /help)
+    ARG_SEP = " ", -- Argument Separator / Spacer. Defines the character in between different Command Arguments
     
-    -- Groups
+    -- Nerdy Settings
 
-    PermissionGroupsUseGroup = false,
-    GroupId = 0, -- 0 if the value above is false
-    RankInclusion = true, -- defines whether Rank checks use >= (true) or > (false). Inclusion means that it includes the identifier of the permissiongroup if it's a rank.
-
-    -- Permissions
-
-    PlayerCanRunCommands = true, -- players without a PermissionGroup correlation automatically have access to Normal level commands
-
-    -- Command
-
-    MinimumCommandLength = 2,
-    MaximumCommandLength = 15
+    Force_RoutineThread_Stop = true -- Forces the user to stop the RunningThread thread before running another thread (internals/Thread.lua)
 }
 
 return Settings
