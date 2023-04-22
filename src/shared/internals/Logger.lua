@@ -3,7 +3,7 @@ local Logger = {}
 local CB_CI = script.Parent.Parent
 local Types = require(CB_CI.Types)
 
-function Logger.Log(...: Types.TStrings)
+function Logger.Log(...)
     print(table.concat({...}, " "))
 end
 
@@ -19,7 +19,7 @@ function Logger.LogWE(filename: string, sep: string, ...)
     print(filename, " (W) ", table.concat({...}, sep))
 end
 
-function Logger.Att(...: Types.TStrings)
+function Logger.Att(...)
     warn(table.concat({...}, " "))
 end
 
@@ -35,7 +35,7 @@ function Logger.AttWE(filename: string, sep: string, ...)
     warn(filename, " (W) ", table.concat({...}, sep))
 end
 
-function Logger.Exc(...: Types.TStrings)
+function Logger.Exc(...)
     error(table.concat({...}, " "))
 end
 

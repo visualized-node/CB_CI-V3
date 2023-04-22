@@ -20,7 +20,9 @@ function CommandBuilder.new(CommandName: string | Types.TStrings, MinPermission:
 end
 
 function CommandBuilder:Run(Sender: Player, Args: Types.TStrings)
-    self.Callback(Sender, Args)
+    local CommandThread = Thread.RegisterRoutineThread(self.Callback, Sender, Args):Run()
+
+    return CommandThread
 end
 
 return CommandBuilder
